@@ -1,0 +1,12 @@
+/bin
+/out
+/gen
+/libs/armeabi/
+/libs/armeabi-v7a/
+/libs/x86/
+/libs/mips/
+/lint-output
+/.gradle/
+/.idea/
+/android.iml
+/local.properties
