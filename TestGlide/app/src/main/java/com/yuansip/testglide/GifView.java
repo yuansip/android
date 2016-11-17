@@ -43,6 +43,10 @@ public class GifView extends FrameLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    public ImageView getImageView() {
+        return mImage;
+    }
+
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -111,17 +115,18 @@ public class GifView extends FrameLayout {
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                         GlideDrawableImageViewTarget glideTarget = (GlideDrawableImageViewTarget) target;
-                        ImageView iv = glideTarget.getView();
-                        int width = iv.getMeasuredWidth();
-                        int targetHeight = width * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
-                        if(iv.getLayoutParams().height != targetHeight) {
-                            iv.getLayoutParams().height = targetHeight;
-                            iv.requestLayout();
-                        }
+//                        ImageView iv = glideTarget.getView();
+//                        int width = iv.getMeasuredWidth();
+//                        int targetHeight = width * resource.getIntrinsicHeight() / resource.getIntrinsicWidth();
+//                        if(iv.getLayoutParams().height != targetHeight) {
+//                            iv.getLayoutParams().height = targetHeight;
+//                            iv.requestLayout();
+//                        }
                         glideTarget.setDrawable(resource);
                         GifView gifView = (GifView) glideTarget.getView().getParent();
                         gifView.stop();
                         return true;
+//                        return false;
                     }
                 })
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

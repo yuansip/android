@@ -35,6 +35,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder viewHolder, int i) {
         android.util.Log.e("yuansip", "onBindViewHolder i=" + i);
+        viewHolder.gifView.getImageView().layout(0, 0, 0, 0);
         viewHolder.gifView.load(picUrls[i]);
 //        Glide.with(context)
 //                .load(picUrls[i])
