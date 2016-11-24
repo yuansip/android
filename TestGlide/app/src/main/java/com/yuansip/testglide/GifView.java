@@ -141,7 +141,6 @@ public class GifView extends FrameLayout {
 //                    @Override
 //                    public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
 //                        hideDimmer();
-//                        android.util.Log.e("yuansip", "load e=" + e.toString());
 //                        return false;
 //                    }
 //
@@ -149,7 +148,6 @@ public class GifView extends FrameLayout {
 //                    public boolean onResourceReady(GlideDrawable resource, Uri model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
 //                        mThumbnail = resource;
 //                        showPlayDimmer();
-//                        android.util.Log.e("yuansip", "load image=" + url);
 //                        return false;
 //                    }
 //                });

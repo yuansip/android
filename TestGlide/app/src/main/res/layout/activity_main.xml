@@ -11,9 +11,11 @@
     android:orientation="vertical"
     tools:context="com.yuansip.testglide.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        <include android:id="@+id/header"
+            layout="@layout/header"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 </LinearLayout>
