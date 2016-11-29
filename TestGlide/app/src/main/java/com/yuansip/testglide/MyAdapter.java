@@ -1,19 +1,24 @@
 package com.yuansip.testglide;
 
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private String[] picUrls;
-    private Context context;
+    private Activity context;
 
     private static final int VIEW_TYPE_HEADER = 0;
     private static final int VIEW_TYPE_ITEM = 1;
 
-    public MyAdapter(Context context, String[] picUrls) {
+    public MyAdapter(Activity context, String[] picUrls) {
         this.picUrls = picUrls;
         this.context = context;
     }
@@ -32,12 +37,28 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int pos) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int pos) {
         int type = getItemViewType(pos);
         if (type == VIEW_TYPE_ITEM) {
             ItemViewHolder holder = (ItemViewHolder) viewHolder;
+            holder.title.setOnClickListener(null);
             holder.gifView.getImageView().layout(0, 0, 0, 0);
             holder.gifView.load(picUrls[pos]);
+            holder.title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    android.util.Log.e("yuansip", "onclick pos=" + pos);
+                    FragmentManager fm = context.getFragmentManager();
+                    fm.executePendingTransactions();
+                    fm.popBackStack("fragment_back", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentTransaction ft = fm.beginTransaction();
+                    DetailFragment fragment = DetailFragment.newInstance(pos);
+                    ft.add(R.id.main_fragment_container, fragment, "item");
+                    ft.addToBackStack("fragment_back");
+                    ft.commit();
+                    fm.executePendingTransactions();
+                }
+            });
         } else {
             // HEADER
         }
@@ -60,10 +81,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         public GifView gifView;
+        public TextView title;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             gifView = (GifView) itemView.findViewById(R.id.gif);
+            title = (TextView) itemView.findViewById(R.id.title);
         }
     }
 

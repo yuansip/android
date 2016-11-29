@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="title"/>
+
     <com.yuansip.testglide.GifView
         android:id="@+id/gif"
         android:layout_width="match_parent"
